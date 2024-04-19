@@ -79,7 +79,9 @@ const Captcha = () => {
   };
 
   useEffect(() => {
-    setCorrectAnswer(generateRandomNumber());
+    if (typeof document !== "undefined") {
+      setCorrectAnswer(generateRandomNumber());
+    }
   }, []);
 
   return (

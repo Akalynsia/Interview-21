@@ -50,7 +50,7 @@ const ProtectedPage = () => {
 
 const Captcha = () => {
   const [selectedNumber, setSelectedNumber] = useState(null);
-  const [correctAnswer, setCorrectAnswer] = useState(3);
+  const [correctAnswer, setCorrectAnswer] = useState(null);
   const [message, setMessage] = useState(null);
 
   const handleImageSelect = (number) => {
@@ -70,6 +70,11 @@ const Captcha = () => {
       );
     }
   };
+
+  useEffect(() => {
+    const randomAnswer = Math.floor(Math.random() * 6) + 1;
+    setCorrectAnswer(randomAnswer);
+  }, []);
 
   return (
     <div className="mt-4">

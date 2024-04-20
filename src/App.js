@@ -53,12 +53,12 @@ const ProtectedPage = () => {
 
 const Captcha = () => {
   const [selectedNumber, setSelectedNumber] = useState(null);
-  const [correctAnswer, setCorrectAnswer] = useState(null);
+  const [correctAnswer, setCorrectAnswer] = useState(generateRandomNumber());
   const [message, setMessage] = useState(null);
 
-  const generateRandomNumber = () => {
+  function generateRandomNumber() {
     return Math.floor(Math.random() * 6) + 1;
-  };
+  }
 
   const handleImageSelect = (number) => {
     setSelectedNumber(number);
@@ -77,12 +77,6 @@ const Captcha = () => {
       );
     }
   };
-
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      setCorrectAnswer(generateRandomNumber());
-    }
-  }, []);
 
   return (
     <div className="mt-4">

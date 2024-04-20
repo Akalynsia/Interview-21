@@ -77,12 +77,11 @@ const Captcha = () => {
       );
     }
   };
-
-  useEffect(() => {
-    if (typeof document !== "undefined") {
+  if (typeof document !== "undefined") {
+    useEffect(() => {
       setCorrectAnswer(generateRandomNumber());
-    }
-  }, []);
+    }, []);
+  }
 
   return (
     <div className="mt-4">

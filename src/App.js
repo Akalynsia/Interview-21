@@ -3,7 +3,6 @@ import { BrowserRouter, Link, Routes, Route, Navigate } from "react-router-dom";
 import classNames from "classnames";
 
 function App() {
-  // KODUNUZ BURAYA GELECEK
   return (
     <BrowserRouter>
       <div className="container mx-auto p-4">
@@ -28,7 +27,6 @@ function App() {
 }
 
 const Home = () => {
-  // KODUNUZ BURAYA GELECEK
   return (
     <div>
       <h1>Welcome to the Home Page</h1>
@@ -42,7 +40,6 @@ const Home = () => {
 };
 
 const ProtectedPage = () => {
-  //  KODUNUZ BURAYA GELECEK
   return (
     <div>
       <h1>Protected Page</h1>
@@ -53,12 +50,12 @@ const ProtectedPage = () => {
 
 const Captcha = () => {
   const [selectedNumber, setSelectedNumber] = useState(null);
-  const [correctAnswer, setCorrectAnswer] = useState(generateRandomNumber());
+  const [correctAnswer, setCorrectAnswer] = useState(null);
   const [message, setMessage] = useState(null);
 
-  function generateRandomNumber() {
+  const generateRandomNumber = () => {
     return Math.floor(Math.random() * 6) + 1;
-  }
+  };
 
   const handleImageSelect = (number) => {
     setSelectedNumber(number);
@@ -77,6 +74,12 @@ const Captcha = () => {
       );
     }
   };
+
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      setCorrectAnswer(generateRandomNumber());
+    }
+  }, []);
 
   return (
     <div className="mt-4">

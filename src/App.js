@@ -72,8 +72,10 @@ const Captcha = () => {
   };
 
   useEffect(() => {
-    const randomAnswer = Math.floor(Math.random() * 6) + 1;
-    setCorrectAnswer(randomAnswer);
+    if (typeof window !== "undefined") {
+      const randomAnswer = Math.floor(Math.random() * 6) + 1;
+      setCorrectAnswer(randomAnswer);
+    }
   }, []);
 
   return (

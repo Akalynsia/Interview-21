@@ -53,7 +53,7 @@ const ProtectedPage = () => {
   );
 };
 
-const LazyCaptcha = lazy(() => import("./Captcha"));
+const LazyCaptchaAnswer = lazy(() => import("./Captcha"));
 
 const LoadingFallback = () => <div>Loading...</div>;
 

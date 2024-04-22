@@ -48,7 +48,7 @@ const ProtectedPage = () => {
   return (
     <div>
       <h1>Protected Page</h1>
-      {showCaptcha && <LazyCaptcha />}
+      {showCaptcha && <LazyCaptchaAnswer />}
     </div>
   );
 };

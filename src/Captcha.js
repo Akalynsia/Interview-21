@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import classNames from "classnames";
-import { getCaptchaAnswer } from "./getCaptchaAnswer";
+
+const LazyCaptchaAnswer = lazy(() => import("./getCaptchaAnswer"));
 
 const Captcha = () => {
   const [selectedNumber, setSelectedNumber] = useState(null);
@@ -26,10 +27,12 @@ const Captcha = () => {
   };
 
   useEffect(() => {
-    import("./getCaptchaAnswer").then(({ getCaptchaAnswer }) => {
+    const loadCaptchaAnswer = async () => {
+      const { getCaptchaAnswer } = await import("./getCaptchaAnswer");
       const randomAnswer = getCaptchaAnswer();
       setCorrectAnswer(randomAnswer);
-    });
+    };
+    loadCaptchaAnswer();
   }, []);
 
   useEffect(() => {
@@ -63,6 +66,9 @@ const Captcha = () => {
       >
         Submit
       </button>
+      <Suspense fallback={<div>Loading CAPTCHA answer...</div>}>
+        <LazyCaptchaAnswer />
+      </Suspense>
       {message && <div className="mt-4">{message}</div>}
     </div>
   );

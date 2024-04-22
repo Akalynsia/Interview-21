@@ -36,7 +36,7 @@ const Captcha = () => {
   }, []);
 
   useEffect(() => {
-    if (typeof document !== "undefined") {
+    if (typeof window !== "undefined") {
       document.title = "Captcha Page";
     }
   }, []);

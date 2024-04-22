@@ -48,7 +48,9 @@ const ProtectedPage = () => {
   return (
     <div>
       <h1>Protected Page</h1>
-      {showCaptcha && <LazyCaptchaAnswer />}
+      <Suspense fallback={<div>Loading...</div>}>
+        {showCaptcha && <LazyCaptchaAnswer />}
+      </Suspense>
     </div>
   );
 };

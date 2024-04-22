@@ -1,9 +1,10 @@
-"use client";
 import React, { useState, useEffect, Suspense, lazy } from "react";
 import { BrowserRouter, Link, Routes, Route, Navigate } from "react-router-dom";
 import Captcha from "./Captcha";
+import useClient from "./useClient";
 
 function App() {
+  const isClient = useClient();
   return (
     <BrowserRouter>
       <div className="container mx-auto p-4">

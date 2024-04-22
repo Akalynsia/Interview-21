@@ -1,5 +1,6 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import { BrowserRouter, Link, Routes, Route, Navigate } from "react-router-dom";
+import Captcha from "./Captcha";
 
 function App() {
   return (
@@ -48,15 +49,13 @@ const ProtectedPage = () => {
   return (
     <div>
       <h1>Protected Page</h1>
-      {typeof document !== "undefined" && showCaptcha && (
+      {showCaptcha && (
         <Suspense fallback={<div>Loading...</div>}>
-          <LazyCaptchaAnswer />
+          <Captcha /> {/* Ensure Captcha component is used correctly */}
         </Suspense>
       )}
     </div>
   );
 };
-
-const LazyCaptchaAnswer = lazy(() => import("./Captcha"));
 
 export default App;

@@ -1,9 +1,8 @@
-import { useState, useEffect, lazy } from "react";
-import classNames from "classnames";
+import React, { useState, useEffect } from "react";
 
-const LazyCaptchaAnswer = lazy(() => import("./getCaptchaAnswer"), {
-  ssr: false,
-});
+const getCaptchaAnswer = () => {
+  return Math.floor(Math.random() * 6) + 1;
+};
 
 const Captcha = () => {
   const [selectedNumber, setSelectedNumber] = useState(null);
@@ -30,8 +29,7 @@ const Captcha = () => {
 
   useEffect(() => {
     const loadCaptchaAnswer = async () => {
-      const { getCaptchaAnswer } = await import("./getCaptchaAnswer");
-      const randomAnswer = getCaptchaAnswer();
+      const randomAnswer = await getCaptchaAnswer();
       setCorrectAnswer(randomAnswer);
     };
     loadCaptchaAnswer();
@@ -52,11 +50,11 @@ const Captcha = () => {
             key={number}
             src={`/number_${number}.jpg`}
             alt={`Number ${number}`}
-            className={classNames("cursor-pointer", "border border-blue-500", {
-              "opacity-50":
-                selectedNumber !== null && selectedNumber !== number,
-              "border-blue-500": selectedNumber === number,
-            })}
+            className={`cursor-pointer ${
+              selectedNumber !== null && selectedNumber !== number
+                ? "opacity-50"
+                : "border border-blue-500"
+            }`}
             style={{ width: "200px", height: "200px" }}
             onClick={() => handleImageSelect(number)}
           />
@@ -68,9 +66,6 @@ const Captcha = () => {
       >
         Submit
       </button>
-      <Suspense fallback={<div>Loading CAPTCHA answer...</div>}>
-        <LazyCaptchaAnswer />
-      </Suspense>
       {message && <div className="mt-4">{message}</div>}
     </div>
   );

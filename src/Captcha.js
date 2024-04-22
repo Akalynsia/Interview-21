@@ -28,6 +28,12 @@ const Captcha = () => {
     setCorrectAnswer(randomAnswer);
   }, []);
 
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      document.title = "Captcha Page";
+    }
+  }, []);
+
   return (
     <div className="mt-4">
       <h2>Please select the image containing the number {correctAnswer}</h2>

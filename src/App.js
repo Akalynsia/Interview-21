@@ -55,6 +55,4 @@ const ProtectedPage = () => {
 
 const LazyCaptchaAnswer = lazy(() => import("./Captcha"));
 
-const LoadingFallback = () => <div>Loading...</div>;
-
 export default App;

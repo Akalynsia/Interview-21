@@ -1,7 +1,9 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, lazy } from "react";
 import classNames from "classnames";
 
-const LazyCaptchaAnswer = lazy(() => import("./getCaptchaAnswer"));
+const LazyCaptchaAnswer = lazy(() => import("./getCaptchaAnswer"), {
+  ssr: false,
+});
 
 const Captcha = () => {
   const [selectedNumber, setSelectedNumber] = useState(null);

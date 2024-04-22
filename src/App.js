@@ -1,6 +1,5 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect, lazy } from "react";
 import { BrowserRouter, Link, Routes, Route, Navigate } from "react-router-dom";
-import classNames from "classnames";
 
 function App() {
   return (

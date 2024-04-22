@@ -1,5 +1,6 @@
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import classNames from "classnames";
+import { getCaptchaAnswer } from "./getCaptchaAnswer";
 
 const Captcha = () => {
   const [selectedNumber, setSelectedNumber] = useState(null);
@@ -25,11 +26,13 @@ const Captcha = () => {
   };
 
   useEffect(() => {
-    const randomAnswer = Math.floor(Math.random() * 6) + 1;
-    setCorrectAnswer(randomAnswer);
+    import("./getCaptchaAnswer").then(({ getCaptchaAnswer }) => {
+      const randomAnswer = getCaptchaAnswer();
+      setCorrectAnswer(randomAnswer);
+    });
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (typeof document !== "undefined") {
       document.title = "Captcha Page";
     }
